@@ -16,10 +16,12 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
+import androidx.core.os.bundleOf
+import androidx.fragment.app.*
+import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.gepst.databinding.SecondActivityBinding
 import com.google.android.material.navigation.NavigationView
@@ -36,10 +38,9 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private val binding by viewBinding(SecondActivityBinding::bind, R.id.sec_layout)
     private lateinit var imageView: ImageView //наша картинка
     private lateinit var backButton: Button //кнопка возврата
-    private lateinit var saveButton: Button //кнопка возврата
-    val rot = RotationImage() // переменная для обращения к классу поворота картинки
+    private lateinit var saveButton: Button //кнопка сохранения
     private lateinit var bitmap: Bitmap
-
+    private val viewModel: ItemViewModel by viewModels()
 
     @SuppressLint("SourceLockedOrientationActivity") //я уже писал на эту тему, попытайтесь вспомнить
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,18 +62,18 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if(check==42){
             val imageUri: Uri? = intent.getStringExtra(MainActivity.keyUriC)?.toUri()
             imageView.setImageURI(imageUri)
+            bitmap = (image_main.drawable as BitmapDrawable).bitmap
+            imageView.setImageBitmap(bitmap)
         }
-//        val butRut: Button = findViewById(R.id.rot_fun)
-//        butRut.setOnClickListener{
-//            val newBitmap = rot.rotate(bitmap)
-//            bitmap = newBitmap
-//            imageView.setImageBitmap(bitmap)
-//        }
+        viewModel.selectedItem.observe(this, Observer {
+
+        })
 
 
         //работаем с кнопкой возврата
         backButton = binding.backBut
         backButton.setOnClickListener{
+            clearFragmentsFromContainer()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -81,7 +82,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         saveButton.setOnClickListener{
             saveMediaToStorage(bitmap)
         }
-
+//        supportFragmentManager.setFragmentResult("requestKey", bundleOf("bundleKey" to bitmap))
 
     }
 
@@ -143,6 +144,15 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     }
 
     private fun findActiveFragment() = supportFragmentManager.fragments.find { it.isVisible }
+
+    fun FragmentActivity.clearFragmentsFromContainer() {
+        val fragments = supportFragmentManager.fragments
+        for (fragment in fragments) {
+            supportFragmentManager.beginTransaction().remove(fragment).commit()
+        }
+        //Remove all the previous fragments in back stack
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
 
     private fun saveMediaToStorage(bitmap: Bitmap) {
         //Generating a file name

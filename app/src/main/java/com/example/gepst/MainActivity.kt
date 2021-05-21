@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.camera.setOnClickListener{
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(takePictureIntent, pickImage)
+            startActivityForResult(takePictureIntent, makeImage)
 
         }
     }
