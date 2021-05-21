@@ -1,6 +1,7 @@
 package com.example.gepst
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -8,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.gepst.databinding.ActivityMainBinding
@@ -44,7 +46,16 @@ class MainActivity : AppCompatActivity() {
 
     var imageUri: Uri? = null
 
-
+    override fun onBackPressed(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Серьёзно?!")
+        builder.setMessage("Вы хотите закрыть приложение?")
+        builder.setPositiveButton("Да") { _, _: Int ->
+            finish()
+        }
+        builder.setNegativeButton("Нет") { _, _: Int -> }
+        builder.show()
+    }
 
         @SuppressLint("SourceLockedOrientationActivity")  //здесь просто хранится описание некоторый недочётов
     override fun onCreate(savedInstanceState: Bundle?) {

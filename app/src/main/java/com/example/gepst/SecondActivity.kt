@@ -3,6 +3,7 @@ package com.example.gepst
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -17,6 +18,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
@@ -41,6 +43,17 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var saveButton: Button //кнопка сохранения
     private lateinit var bitmap: Bitmap
     private val viewModel: ItemViewModel by viewModels()
+
+    override fun onBackPressed(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Серьёзно?!")
+        builder.setMessage("Вы хотите закрыть приложение?")
+        builder.setPositiveButton("Да") { _, _: Int ->
+            finish()
+        }
+        builder.setNegativeButton("Нет") { _, _: Int -> }
+        builder.show()
+    }
 
     @SuppressLint("SourceLockedOrientationActivity") //я уже писал на эту тему, попытайтесь вспомнить
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +94,8 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         saveButton = binding.save
         saveButton.setOnClickListener{
             saveMediaToStorage(bitmap)
+            Toast.makeText(this, "Картинка сохранена", Toast.LENGTH_SHORT).show()
         }
-//        supportFragmentManager.setFragmentResult("requestKey", bundleOf("bundleKey" to bitmap))
 
     }
 

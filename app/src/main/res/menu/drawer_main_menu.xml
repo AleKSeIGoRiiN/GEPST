@@ -24,7 +24,7 @@
             android:icon="@drawable/facerecognition"/>
         <item android:title="@string/textDr"
             android:id="@+id/id_Dr"
-            android:icon="@drawable/ic_col"/>
+            android:icon="@drawable/brokenline"/>
         <item android:title="@string/textRet"
             android:id="@+id/id_ret"
             android:icon="@drawable/retouch"/>
