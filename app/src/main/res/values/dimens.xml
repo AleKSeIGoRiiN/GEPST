@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="name_width">320dp</dimen>
+    <dimen name="name_height">140dp</dimen>
+    <dimen name="but_width">70dp</dimen>
+    <dimen name="but_height">70dp</dimen>
+    <dimen name="text_width">100dp</dimen>
+    <dimen name="text_height">30dp</dimen>
+    <dimen name="header_second">170dp</dimen>
+    <dimen name="header_image">90dp</dimen>
+    <dimen name="image_name_width">100dp</dimen>
+    <dimen name="image_name_height">100dp</dimen>
+    <dimen name="image_main_width">100dp</dimen>
+    <dimen name="image_main_height">100dp</dimen>
+
+</resources>

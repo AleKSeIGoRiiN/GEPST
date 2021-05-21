@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/namE"
+        android:layout_width="@dimen/name_width"
+        android:layout_height="@dimen/name_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043"
+        app:srcCompat="@drawable/darkname"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/image"
+        android:layout_width="@dimen/but_width"
+        android:layout_height="@dimen/but_height"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/namE"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/image" />
+
+    <ImageButton
+        android:id="@+id/camera"
+        android:layout_width="@dimen/but_width"
+        android:layout_height="@dimen/but_height"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@id/image"
+        app:layout_constraintTop_toTopOf="@id/namE"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/camera" />
+
+    <TextView
+        android:id="@+id/textImage"
+        android:layout_width="@dimen/text_width"
+        android:layout_height="@dimen/text_height"
+        android:text="@string/textImage"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/textCamera"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/image"
+        app:layout_constraintVertical_bias="0.85" />
+
+    <TextView
+        android:id="@+id/textCamera"
+        android:layout_width="@dimen/text_width"
+        android:layout_height="@dimen/text_height"
+        android:text="@string/textCamera"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="@id/textImage"
+        app:layout_constraintTop_toTopOf="@id/camera"
+        app:layout_constraintVertical_bias="0.85" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

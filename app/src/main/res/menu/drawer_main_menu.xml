@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+<item
+    android:id="@+id/head"
+    android:icon="@drawable/headerbackground"
+    app:showAsAction="always"
+    android:title="@string/textHead">
+    <menu>
+    <group android:checkableBehavior="single">
+        <item android:title="@string/textRot"
+            android:id="@+id/id_rot"
+            android:icon="@drawable/rotationimage"/>
+        <item android:title="@string/textCor"
+            android:id="@+id/id_cor"
+            android:icon="@drawable/ic_col"/>
+        <item android:title="@string/textScal"
+            android:id="@+id/id_scal"
+            android:icon="@drawable/scaling"/>
+        <item android:title="@string/textRec"
+            android:id="@+id/id_rec"
+            android:icon="@drawable/facerecognition"/>
+        <item android:title="@string/textDr"
+            android:id="@+id/id_Dr"
+            android:icon="@drawable/ic_col"/>
+        <item android:title="@string/textRet"
+            android:id="@+id/id_ret"
+            android:icon="@drawable/retouch"/>
+        <item android:title="@string/textMas"
+            android:id="@+id/id_mas"
+            android:icon="@drawable/masking"/>
+        <item android:title="@string/textFilt"
+            android:id="@+id/id_Filt"
+            android:icon="@drawable/filtration"/>
+        <item android:title="@string/textCub"
+            android:id="@+id/id_Cub"
+            android:icon="@drawable/cube"/>
+
+    </group>
+    </menu>
+</item>
+
+</menu>

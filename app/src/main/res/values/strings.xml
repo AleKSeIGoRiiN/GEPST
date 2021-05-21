@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GEPST</string>
+    <string name="todo">TODO</string>
+    <string name="textImage">Изображения</string>
+    <string name="textCamera">Камера</string>
+    <string name="textRot">Повороты изображения</string>
+    <string name="textCor">Цветокоррекция</string>
+    <string name="textScal">Масштабирование изображения</string>
+    <string name="textRec">Распознавание лиц/людей</string>
+    <string name="textDr">Рисование ломаных линий</string>
+    <string name="textRet">Ретуширование</string>
+    <string name="textMas">Нерезкое маскирование</string>
+    <string name="textFilt">Фильтрация</string>
+    <string name="textCub">3D кубик</string>
+    <string name="textHead">Функции</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back">Назад</string>
+    <string name="left">влево</string>
+    <string name="right">вправо</string>
+    <string name="save">Сохранить</string>
+</resources>
