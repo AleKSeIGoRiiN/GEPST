@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         if (resultCode == RESULT_OK && requestCode == makeImage){
-            val takenImage = data?.extras?.get("data")
+            val takenImage = data?.extras?.get("data") as Bitmap
             val intent = Intent(this, SecondActivity::class.java)
             intent.putExtra(keyUriC, takenImage.toString())
             intent.putExtra(check, makeImage)

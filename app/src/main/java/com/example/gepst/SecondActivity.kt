@@ -7,7 +7,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -47,8 +49,9 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     private lateinit var backButton: Button //кнопка возврата
     private lateinit var saveButton: Button //кнопка сохранения
     private lateinit var leftButton: Button
-    private lateinit var rightButton: Button
+    private lateinit var startImage: Button
     private lateinit var bitmap: Bitmap
+    private lateinit var startBitmap: Bitmap
     private val rot = RotationImage()
     private val viewModel: ItemViewModel by viewModels()
 
@@ -74,6 +77,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         //делаем проверку
         //получаем URI и присваеваем его нашей картинке
         // P.S. URI будет переделано в Bitmap, чтобы мы могли сразу работать картинкой
+
         if(check==100) {
             val imageUri: Uri? = intent.getStringExtra(MainActivity.keyUriG)?.toUri()
             imageView.setImageURI(imageUri)
@@ -83,10 +87,10 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         if(check==42){
             val imageUri: Uri? = intent.getStringExtra(MainActivity.keyUriC)?.toUri()
             imageView.setImageURI(imageUri)
-            bitmap = (image_main.drawable as BitmapDrawable).bitmap
-            imageView.setImageBitmap(bitmap)
+            bitmap = BitmapFactory.decodeResource(resources,R.drawable.camtest)
+
         }
-        rightButton = binding.rotRight
+        startImage = binding.startImage
         leftButton = binding.rotLeft
         //работаем с кнопкой возврата
         binding.backBut.also { backButton = it }
@@ -95,7 +99,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
+        startBitmap = bitmap
         saveButton = binding.save
         saveButton.setOnClickListener{
             saveMediaToStorage(bitmap)
@@ -114,14 +118,20 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when(item.itemId){
             R.id.id_rot -> {
 //                selectScreen(RotFragment.TAG, RotFragment.newInstance())
+                startImage.visibility = View.VISIBLE
                 leftButton.visibility = View.VISIBLE
-                rightButton.visibility = View.VISIBLE
                 viewModel.selectItem(bitmap)
                 leftButton.setOnClickListener{
-                    val newBitmap: Bitmap = rot.rotate(bitmap)
+                    val newBitmap: Bitmap = rot.rotateLeft(bitmap)
                     bitmap = newBitmap
                     imageView.setImageBitmap(bitmap)
+                    saveButton.visibility = View.VISIBLE
                 }
+                startImage.setOnClickListener {
+                    imageView.setImageBitmap(startBitmap)
+                    saveButton.visibility = View.INVISIBLE
+                }
+
             }
             R.id.id_cor -> {
 

@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream
 class RotationImage() {
 
     // вот эти 10 строчек кто-то пытался сделать 3 недели
-    fun rotate(bitmap: Bitmap): Bitmap { //получаем Bitmap
+    fun rotateLeft(bitmap: Bitmap): Bitmap { //получаем Bitmap
         val width: Int = bitmap.width // Записываем в переменные его ширину и длину
         val height: Int = bitmap.height
         val newBitmap: Bitmap = Bitmap.createBitmap(height, width, bitmap.config) //Создаём новый Bitmap
@@ -24,11 +24,5 @@ class RotationImage() {
         // Возвращаем уже новый Bitmap, а не изменненый старый!
         return newBitmap
     }
-
-
-
-
-
-
 
 }

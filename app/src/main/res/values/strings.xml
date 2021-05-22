@@ -16,7 +16,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back">Назад</string>
-    <string name="left">влево</string>
-    <string name="right">вправо</string>
+    <string name="left">Поворот</string>
+    <string name="right">Исходный</string>
     <string name="save">Сохранить</string>
 </resources>

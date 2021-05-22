@@ -18,7 +18,7 @@ class RotFragment : Fragment(R.layout.fragment_rot) {
     private val rot = RotationImage()
     private val viewModel: ItemViewModel by activityViewModels()
     lateinit var bitmap: Bitmap
-
+    lateinit var startBitmap: Bitmap
 
     companion object {
         val TAG = RotFragment::class.java.simpleName
@@ -37,7 +37,7 @@ class RotFragment : Fragment(R.layout.fragment_rot) {
 
         butRot = root.findViewById<Button>(R.id.rotLeft)
         butRot.setOnClickListener{
-            val newBitmap: Bitmap = rot.rotate(bitmap)
+            val newBitmap: Bitmap = rot.rotateLeft(bitmap)
             viewModel.selectItem(newBitmap)
         }
         return root
