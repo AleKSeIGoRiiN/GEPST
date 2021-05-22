@@ -7,36 +7,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
-import by.kirich1409.viewbindingdelegate.viewBinding
-import com.example.gepst.databinding.ActivityMainBinding
-import com.example.gepst.databinding.FragmentRotBinding
-import com.example.gepst.databinding.SecondActivityBinding
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 
 
 @Suppress("CAST_NEVER_SUCCEEDS")
 class RotFragment : Fragment(R.layout.fragment_rot) {
-    private val binding by viewBinding(FragmentRotBinding::bind, R.id.fragmentRot)
+//    private val binding by viewBinding(FragmentRotBinding::bind, R.id.fragmentRot)
     private lateinit var butRot: Button
     private val rot = RotationImage()
+    private val viewModel: ItemViewModel by activityViewModels()
+    lateinit var bitmap: Bitmap
+
 
     companion object {
         val TAG = RotFragment::class.java.simpleName
-        val key = "activity"
         fun newInstance() = RotFragment()
+
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View?{
+        val root = inflater.inflate(R.layout.fragment_rot, container, false)
+        viewModel.selectedItem.observe(viewLifecycleOwner, Observer {
+            bitmap = it
+        })
 
-//        setFragmentResultListener("requestKey") { requestKey, bundle ->
-//            val bitmap: Bitmap = bundle.getString("bundleKey") as Bitmap
-//            butRot.setOnClickListener {
-//                val newBitmap = rot.rotate(bitmap)
-//
-//            }
-
+        butRot = root.findViewById<Button>(R.id.rotLeft)
+        butRot.setOnClickListener{
+            val newBitmap: Bitmap = rot.rotate(bitmap)
+            viewModel.selectItem(newBitmap)
         }
-
+        return root
+    }
 }

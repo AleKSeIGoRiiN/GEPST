@@ -1,16 +1,20 @@
 package com.example.gepst
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.gepst.databinding.ActivityMainBinding
 import java.util.*
@@ -24,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         const val check = "check"
         const val pickImage = 100
         const val makeImage = 42
+        const val PERMISSION_CODE_READ = 1001
     }
 
     var name: ImageView? = null         // переменные и функция для мерцания логотипа. Сделал через массив
@@ -56,15 +61,25 @@ class MainActivity : AppCompatActivity() {
         builder.setNegativeButton("Нет") { _, _: Int -> }
         builder.show()
     }
+    private fun checkPermissionForImage() {
+        if ((checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+            && (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+        ) {
+            val permission = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+            requestPermissions(permission, PERMISSION_CODE_READ)
+        }
+    }
 
         @SuppressLint("SourceLockedOrientationActivity")  //здесь просто хранится описание некоторый недочётов
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // запрет на поворот экрана
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // запрет на поворот экран
+
+
         name = binding.namE // мерцание запускаем
         flicker()
-
+            checkPermissionForImage()
 
             // получение картинки из галереи и камеры
             //сначала мы отправляемся к памяти телефона
