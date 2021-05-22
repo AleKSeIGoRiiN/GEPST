@@ -148,6 +148,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             R.id.id_rec -> {
                 startImage.visibility = View.INVISIBLE
                 leftButton.visibility = View.INVISIBLE
+                selectScreen(FaceRecognitionFragment.TAG, FaceRecognitionFragment.newInstance())
             }
             R.id.id_Dr -> {
                 startImage.visibility = View.INVISIBLE
