@@ -19,4 +19,10 @@
     <string name="left">Поворот</string>
     <string name="right">Исходный</string>
     <string name="save">Сохранить</string>
+    <string name="red">Красный</string>
+    <string name="negative">Негатив</string>
+    <string name="filter">средний фильтр</string>
+    <string name="ish">Исходное</string>
+    <string name="x1_5">x1.5</string>
+    <string name="x2">x2</string>
 </resources>

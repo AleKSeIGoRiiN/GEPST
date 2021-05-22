@@ -118,6 +118,7 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         when(item.itemId){
             R.id.id_rot -> {
 //                selectScreen(RotFragment.TAG, RotFragment.newInstance())
+                clearFragmentsFromContainer()
                 startImage.visibility = View.VISIBLE
                 leftButton.visibility = View.VISIBLE
                 viewModel.selectItem(bitmap)
@@ -134,28 +135,39 @@ class SecondActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
             }
             R.id.id_cor -> {
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
+                selectScreen(ColorCorrectFragment.TAG, ColorCorrectFragment.newInstance())
 
             }
             R.id.id_scal -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
+                selectScreen(ScalingImageFragment.TAG, ScalingImageFragment.newInstance())
             }
             R.id.id_rec -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
             R.id.id_Dr -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
             R.id.id_ret -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
             R.id.id_mas -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
             R.id.id_Filt -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
             R.id.id_Cub -> {
-
+                startImage.visibility = View.INVISIBLE
+                leftButton.visibility = View.INVISIBLE
             }
 
         }
